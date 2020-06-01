@@ -6,7 +6,7 @@
 }
 
 .satistic {
-  padding-left: 90%;
+  padding-left: 91%;
   font: 30px Arial, sans-serif;
 }
 .price {
@@ -53,6 +53,15 @@
   justify-content: center;
 }
 
+#dd {
+  justify-content: center;
+  height: 44px;
+} 
+
+.stcar{
+  padding-left: 9px;
+}
+
 /* .box-chart {
   display: flex;
 }
@@ -64,3 +73,6 @@
 .box-chart .item-right .chart4 {
   margin-left: 0 !important;
 } */
+.bsl{
+  padding-left: 332px;
+}
