@@ -35,8 +35,29 @@ class Users extends Component {
 
     return (
       <div className="animated fadeIn">
+        
         <Row>
+          
           <Col xl={6}>
+            <Row>
+              <div>
+                  <p>No.</p>
+                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
+              </div>
+              <div>
+                  <p>The date</p>
+                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
+              </div>
+              <div>
+                  <p>Paking spot</p>
+                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
+              </div>
+              <div>
+                  <p>Paking area</p>
+                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
+              </div>
+              
+            </Row>
             <Card>
               <CardHeader>
                 <i className="fa fa-align-justify"></i> Users <small className="text-muted">example</small>

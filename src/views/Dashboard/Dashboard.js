@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,Component  } from "react";
 import { Statistic, Col } from "antd";
 import { Line as LineA } from "react-chartjs-2";
 import {
@@ -55,6 +55,7 @@ const style = { top: 15, left: 250, lineHeight: "24px" };
 const COLORS = ["#63C2DE", "#20A8D8"];
 const data4 = {
   labels: ["10.00", "10.30", "11.30", "12.00", "12.02", "12.20"],
+  
   datasets: [
     {
       label: "Incoming",
@@ -123,7 +124,7 @@ const Dashboard = () => {
               <span className="textcard1">Number of cars</span>
             </CardBody>
             <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
-              <h4 className="number">{dashboard[0].totalCars}</h4>
+              <h4 className="number">{dashboard[0].totalCars}</h4> 
             </div>
           </Card>
         </Col>
