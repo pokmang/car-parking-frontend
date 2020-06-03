@@ -1,8 +1,9 @@
 #chrat1 {
   border-radius: 20px;
-  width: 100%;
+  width: 940px;
   margin-left: 2vw;
   margin-right: 2vw;
+  height: 312px;
 }
 
 .satistic {
@@ -17,7 +18,7 @@
 #chrat2 {
   border-radius: 20px;
   width: 300px;
-  height: auto;
+  height: 584px;
 }
 .move {
   position: absolute;

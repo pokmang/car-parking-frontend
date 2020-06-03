@@ -74,14 +74,38 @@ const data4 = {
 };
 
 const Dashboard = () => {
-  const [dashboard, setDashboard] = useState([{}]);
+  const [dashboard, setDashboard] = useState([]);
   const [realtime, setRealtime] = useState([]);
   const [data, setData] = useState([]);
   const [graph, setGraph] = useState([{}]);
-  realtime.sort((a, b) => new moment(a.time) - new moment(b.time));
+
+
+  const tableRealtime = () => {
+    if (realtime.success) {
+      realtime.data.sort((a, b) => new moment(a.time) - new moment(b.time))
+      return (
+        <TableBody>
+          {realtime.data.slice(0, 3).map(realtime => (
+            <TableRow
+              hover
+              key={realtime.id}
+            >
+              <TableCell><img src={realtime.imgCar}/></TableCell>
+              <TableCell>{realtime.numberOfcars}</TableCell>
+              <TableCell>
+                {moment(realtime.time).format('hh:mm:ss')}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      )
+    }
+  }
   useEffect(() => {
     getDashboard();
   }, []);
+
+
   const getDashboard = async () => {
     let dashboard = await axios.get(
       "http://localhost:8000/dashboard/getDashboard"
@@ -96,20 +120,45 @@ const Dashboard = () => {
     let graph = await axios.get("http://localhost:8000/dashboard/getGraph");
     setGraph(graph.data);
   };
-  console.log("dashboard", dashboard);
+
+let totalcar = 0
+let parkingcar = 0
+let deliverycar = 0
+let vipcar = 0
+
+if(dashboard.success){
+
+  totalcar = dashboard.data[0].totalCars 
+  parkingcar = dashboard.data[0].carParking  
+  deliverycar = dashboard.data[0].deliveryParking
+  vipcar = dashboard.data[0].carVIP
+
+}
+else {
+  return <div>Data Dashboard Error</div>
+  console.log("No data");
+
+}
+
+  console.log("dashboard",dashboard);
   console.log("realtime", realtime);
   console.log("data", data);
   console.log("graph", graph);
-  const datagraph = [];
-  graph.forEach((deta) => {
+  
+const datagraph = [];
+  if(graph.success){
+  
+  graph.data.forEach((deta) => {
     const newData = {};
     newData.name = deta.date;
     newData.number = deta.totalCars;
     datagraph.push(newData);
     console.log("test1", newData);
   });
+}
 
   return (
+ 
     <div className="animated fadeIn">
       <Row>
         <Col xs="12" sm="6" lg="2" md="6" xl="4">
@@ -124,7 +173,7 @@ const Dashboard = () => {
               <span className="textcard1">Number of cars</span>
             </CardBody>
             <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
-              <h4 className="number">{dashboard[0].totalCars}</h4> 
+              <h4 className="number">{totalcar}</h4> 
             </div>
           </Card>
         </Col>
@@ -141,7 +190,7 @@ const Dashboard = () => {
               <span className="textcard2">Car Parking</span>
             </CardBody>
             <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
-              <h4 className="number">{dashboard[0].carParking}</h4>
+              <h4 className="number">{parkingcar}</h4>
             </div>
           </Card>
         </Col>
@@ -158,7 +207,7 @@ const Dashboard = () => {
               <span className="textcard3">Delivery Parking</span>
             </CardBody>
             <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
-              <h4 className="number">{dashboard[0].deliveryParking}</h4>
+              <h4 className="number">{deliverycar}</h4>
             </div>
           </Card>
         </Col>
@@ -174,7 +223,7 @@ const Dashboard = () => {
               <span className="textcard4">Car VIP</span>
             </CardBody>
             <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
-              <h4 className="number">{dashboard[0].carVIP}</h4>
+              <h4 className="number">{vipcar}</h4>
             </div>
           </Card>
         </Col>
@@ -190,11 +239,11 @@ const Dashboard = () => {
                 <Statistic value={data.length} className="satistic" />
                 <div className="price">
                   <img src={price} alt="logo" className="price" />
-                  <text>{dashboard[0].totalCars}</text>
-                  <text>({dashboard[0].totalCars})</text>
+                  <text>{totalcar}</text>
+                  <text>({totalcar})</text>
                 </div>
                 <LineChart width={900} height={200} data={datagraph}>
-                  <Line dataKey="number" stroke="#1DAAFF" />
+                  <Line dataKey="number" stroke="#1DAAFF" /> */}
                   {/* <CartesianGrid stroke="#ccc" className="line" /> */}
                 </LineChart>
               </CardBody>
@@ -259,11 +308,11 @@ const Dashboard = () => {
                 <text>Movement</text>
                 <div>
                   <img src={car} alt="logo" className="rtcar" />
-                  <text id="car">{dashboard[0].totalCars}</text>
+                  <text id="car">{totalcar}</text>
                 </div>
                 <div>
                   <img src={parking} alt="logo" className="rtpark" />
-                  <text id="car">{dashboard[0].carParking}</text>
+                  <text id="car">{parkingcar}</text>
                 </div>
               </div>
 
@@ -278,31 +327,19 @@ const Dashboard = () => {
                   paddingAngle={5}
                   dataKey="value"
                 >
-                  {data.map((entry, index) => (
+                  {/* {data.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
                     />
-                  ))}
+                  ))} */}
                 </Pie>
               </PieChart>
             </CardBody>
             <CardContent>
               <PerfectScrollbar>
                 <Table>
-                  <TableBody>
-                    {realtime.slice(0, 3).map((realtime) => (
-                      <TableRow hover key={realtime.id}>
-                        <TableCell>
-                          <img src={realtime.imgCar} />
-                        </TableCell>
-                        <TableCell>{realtime.numberOfcars}</TableCell>
-                        <TableCell>
-                          {moment(realtime.time).format("hh:mm:ss")}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
+                 {tableRealtime()}
                 </Table>
               </PerfectScrollbar>
             </CardContent>
