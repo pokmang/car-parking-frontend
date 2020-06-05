@@ -1,8 +1,9 @@
 import Login from './Login';
-import Page404 from './Page404';
+import PageManage from './Manage/Manage';
 import Page500 from './Page500';
 import Register from './Register';
+import Manage from './Manage';
 
 export {
-  Login, Page404, Page500, Register
+  Login, Manage, Page500, Register ,Manage
 };
