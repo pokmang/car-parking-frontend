@@ -37,7 +37,7 @@ const Manage = () => {
   };
   return(
        <div>
-        user list   
+        
         {renderList()}
         </div>
   )

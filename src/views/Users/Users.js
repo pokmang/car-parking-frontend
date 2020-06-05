@@ -1,91 +1,94 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import React, { Component, useEffect, useState } from "react";
+import axios from "axios";
 
-import usersData from './UsersData'
 
-function UserRow(props) {
-  const user = props.user
-  const userLink = `/users/${user.id}`
 
-  const getBadge = (status) => {
-    return status === 'Active' ? 'success' :
-      status === 'Inactive' ? 'secondary' :
-        status === 'Pending' ? 'warning' :
-          status === 'Banned' ? 'danger' :
-            'primary'
-  }
+const Users = () => {
+  const [user, setUser] = useState([]);
+  const fetchData = async () => {
+    let res = await axios.get("http://localhost:8000/users/getUsers");
+    setUser(res.data.data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const deluser = async (id) => {
+    let res = await axios.delete(
+      `http://localhost:8000/users/deleteUser/${id}`
+    );
+    console.log(res.data);
+    fetchData();
+  };
+  const renderList = () => {
 
-  return (
-    <tr key={user.id.toString()}>
-      <th scope="row"><Link to={userLink}>{user.id}</Link></th>
-      <td><Link to={userLink}>{user.name}</Link></td>
-      <td>{user.registered}</td>
-      <td>{user.role}</td>
-      <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status}</Badge></Link></td>
-    </tr>
-  )
-}
 
-class Users extends Component {
+    return user.map((v) => {
+      return (
+        <div key={v}>
 
-  render() {
 
-    const userList = usersData.filter((user) => user.id < 10)
-
-    return (
-      <div className="animated fadeIn">
-        
-        <Row>
           
-          <Col xl={6}>
-            <Row>
-              <div>
-                  <p>No.</p>
-                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
-              </div>
-              <div>
-                  <p>The date</p>
-                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
-              </div>
-              <div>
-                  <p>Paking spot</p>
-                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
-              </div>
-              <div>
-                  <p>Paking area</p>
-                  <input class="form-control mr-sm-2" type="search"  aria-label="Search"/>
-              </div>
-              
-            </Row>
-            <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify"></i> Users <small className="text-muted">example</small>
-              </CardHeader>
-              <CardBody>
-                <Table responsive hover>
-                  <thead>
-                    <tr>
-                      <th scope="col">id</th>
-                      <th scope="col">name</th>
-                      <th scope="col">registered</th>
-                      <th scope="col">role</th>
-                      <th scope="col">status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userList.map((user, index) =>
-                      <UserRow key={index} user={user}/>
-                    )}
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    )
-  }
-}
+  <table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">{v.id}</th>
+      <td>{v.name} {v.surname}</td>
+      <td>{v.nickname}</td>
+      <td>{v.age}</td>
+      <td>{v.phoneNumber}</td>
+      <td>{v.line}</td>
+      <td>{v.email}</td>
+      <td> บ้านเลขที่ {v.address.houseNo} หมู่{v.address.village} ต.{v.address.subDistrict} อ.{v.address.district} จ.{v.address.province} {v.address.country} {v.address.postalCode} </td>
+       <button
+            onClick={() => {
+              deluser(v.id);
+            }}
+          >
+            DEL
+          </button>
+          
+    </tr>
+  </tbody>
+</table>
+
+
+          {/* <button
+            onClick={() => {
+              deluser(v.id);
+            }}
+          >
+            DEL
+          </button>
+           */}
+      
+        </div>
+      );
+    });
+  };
+  return(
+       <div>
+
+{/* 
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Nickname</th>
+      <th scope="col">Age</th>
+      <th scope="col">PhoneNumber</th>
+      <th scope="col">Line</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Address</th> 
+      <th scope="col">จัดการ USER</th>  */}
+
+
+
+        {renderList()}
+
+        
+        </div>
+
+
+  )
+ 
+};
 
 export default Users;

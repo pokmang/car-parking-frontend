@@ -36,6 +36,7 @@ const Register = props => {
         
     })
     alert('Create Success')
+    // props.history.push('/dashboard')
 }
 
 
@@ -140,7 +141,7 @@ const Register = props => {
                     </InputGroupAddon>
                     <Input type="text" placeholder="บ้านเลขที่"
                     onChange={(e) =>
-                      dispatch({ type: 'CHANGE_houseNo',  data:  { village: e.target.value}})
+                      dispatch({ type: 'CHANGE_houseNo',  data:  { houseNo: e.target.value}})
                     } />
                     <Input type="text" placeholder="หมู่บ้าน"
                     onChange={(e) =>
@@ -173,10 +174,12 @@ const Register = props => {
                       dispatch({ type: 'CHANGE_postalCode',  data: {  postalCode: e.target.value}} )
                     } />
                   </InputGroup>
-
-                  <Button color="success"  onClick={createuser}>
+                  <div className="btn">
+                     <Button color="success"  onClick={createuser}>
                     Create Account
                   </Button>
+                    </div>    
+                 
                   {/* <div onClick={deleteuser}>Delete</div> */}
                 </Form>
               </CardBody>
