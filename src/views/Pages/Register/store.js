@@ -20,6 +20,7 @@ const initialForm = {
             }
         }
 const formReducer = (newdata = initialForm, action) => {
+    console.log("121",newdata);
     
     switch (action.type) {
         case 'CHANGE_id' : return {...newdata, id: action.data.id};
@@ -32,7 +33,7 @@ const formReducer = (newdata = initialForm, action) => {
         case 'CHANGE_email' : return {...newdata, email: action.data.email};
         case 'CHANGE_houseNo' : return {...newdata, address :{...newdata.address , houseNo: action.data.houseNo}};
         case 'CHANGE_village' : return {...newdata,  address :{...newdata.address , village: action.data.village}};
-        case 'CHANGE_subDistrict' : return {...newdata,  address :{...newdata.address , subDistrict: action.subDistrict}};
+        case 'CHANGE_subDistrict' : return {...newdata,  address :{...newdata.address , subDistrict: action.data.subDistrict}};
         case 'CHANGE_district' : return {...newdata,  address :{...newdata.address , district: action.data.district}};
         case 'CHANGE_province' : return {...newdata,  address :{...newdata.address , province: action.data.province}};
         case 'CHANGE_postalCode' : return {...newdata,  address :{...newdata.address , postalCode: action.data.postalCode}};

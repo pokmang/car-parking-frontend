@@ -26,7 +26,7 @@ const Register = props => {
 
 
   const createuser = async () => {
-    console.log(form);
+    console.log("dffdf",form);
     
     await axios.post(`http://localhost:8000/users/addUser`, form)
     dispatch({
@@ -39,7 +39,8 @@ const Register = props => {
     // props.history.push('/dashboard')
 }
 
-
+  console.log();
+  
 
   return (
     <div className="app flex-row align-items-center">
@@ -143,13 +144,13 @@ const Register = props => {
                     onChange={(e) =>
                       dispatch({ type: 'CHANGE_houseNo',  data:  { houseNo: e.target.value}})
                     } />
-                    <Input type="text" placeholder="หมู่บ้าน"
+                    <Input type="text" placeholder="หมู่"
                     onChange={(e) =>
                       dispatch({ type: 'CHANGE_village',  data:  { village: e.target.value}})
                     } />
                     <Input type="text" placeholder="ตำบล" 
                      onChange={(e) =>
-                      dispatch({ type: 'CHANGE_subDistrict',  data: {  subDistrict: e.target.value}} )
+                      dispatch({ type: 'CHANGE_subDistrict',  data: {  subDistrict : e.target.value}} )
                     }/>
                     <Input type="text" placeholder="อำเภอ"
                      onChange={(e) =>

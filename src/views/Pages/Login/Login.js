@@ -1,65 +1,72 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardGroup,
+  Col,
+  Container,
+  Form,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Row,
+} from "reactstrap";
+import './login.css' ;
+import colorgreen from "../../../assets/img/icon/colorgreen.png";
+import logo from "../../../assets/img/icon/img.png";
+const Login = () => {
+  return (
+    <div className="back">
+      <Row>
+        <Col>
+          <div>
+            <img src={colorgreen} alt="logocar" className="img" />
+          </div>
+        </Col>
 
-class Login extends Component {
-  render() {
-    return (
-      <div className="app flex-row align-items-center">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="8">
-              <CardGroup>
-                <Card className="p-4">
-                  <CardBody>
-                    <Form>
-                      <h1>Login</h1>
-                      <p className="text-muted">Sign In to your account</p>
-                      <InputGroup className="mb-3">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="icon-user"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" />
-                      </InputGroup>
-                      <InputGroup className="mb-4">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="icon-lock"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" />
-                      </InputGroup>
-                      <Row>
-                        <Col xs="6">
-                          <Button color="primary" className="px-4">Login</Button>
-                        </Col>
-                        <Col xs="6" className="text-right">
-                          <Button color="link" className="px-0">Forgot password?</Button>
-                        </Col>
-                      </Row>
-                    </Form>
-                  </CardBody>
-                </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
-                  <CardBody className="text-center">
-                    <div>
-                      <h2>Sign up</h2>
-                      <p>car parking เป็นระบบการดูการเข้าจอดรถในพื้นที่ ลานจอดรถผ่านจอมอนิเตอร์</p>
-                      <Link to="/register">
-                        <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
-                      </Link>
+        <Col>
+        <form className="box">
+          <div className="img">
+            <img src={logo} alt="logocar"  />
+          </div>
+        
+
+                <div className="form-group">
+                  
+                    <input type="email" className="form-control" placeholder="Username" />
+                </div>
+
+                <div className="form-group">
+                   
+                    <input type="password" className="form-control" placeholder="Password" />
+                </div>
+
+                
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                        <p className="forgot-password text-right">
+                    Forgot <a href="#">password?</a>
+                </p>
                     </div>
-                  </CardBody>
-                </Card>
-              </CardGroup>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
-}
+               
+                
+            
+                <button  className="bnt1">Login</button>
+<Link to="/register">
+                <button className="bnt2">Sing up</button>
+       </Link>     
+               
+            </form>
+            
+            
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
 export default Login;

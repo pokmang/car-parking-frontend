@@ -1,0 +1,23 @@
+.title{
+    display: flex;
+    justify-content: space-between;
+}
+.id{
+    padding-left: 11px;
+}
+.name{
+    padding-right: 1px;
+}
+
+.bnt{
+    display: flex;
+    place-content: center;
+    
+}
+.bnt1{
+
+    background-color:#5188F5;
+}
+.bnt2{
+    background-color:#5188F5;
+}

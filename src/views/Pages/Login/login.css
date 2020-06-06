@@ -1,0 +1,12 @@
+.back{
+    background-color: white;
+}
+.img{
+    display: flex;
+    justify-content: center;
+}
+.box{
+    margin-top: 300px;
+    margin-left: 40px;
+    width: 400px;
+}
