@@ -25,7 +25,20 @@ const Users = () => {
       return (
         <div key={v}>
           <table class="table">
-            
+          <thead>
+      <tr>
+      <th >ID</th>
+      <th className="name">Name</th>
+      <th className="nickname">Nickname</th>
+      <th className="age">Age</th>
+      <th>PhoneNumber</th>
+      <th>Line</th>
+      <th>E-mail</th>
+      <th>Address</th> 
+      <th>จัดการ USER</th> 
+
+      </tr>
+    </thead>
             <tbody>
               <tr>
                 <th scope="row">{v.id}</th>
@@ -67,10 +80,10 @@ const Users = () => {
       );
     });
   };
-  return (
+  return  (
     <div>
       
-      <div className="title">
+      {/* <div className="title">
       <th className="id">ID</th>
       <th className="name">Name</th>
       <th className="nickname">Nickname</th>
@@ -81,9 +94,10 @@ const Users = () => {
       <th>Address</th> 
       <th>จัดการ USER</th> 
 
-      </div>
+      </div> */}
      
       {renderList()}
+  
     </div>
   );
 };

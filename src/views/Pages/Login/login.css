@@ -6,7 +6,28 @@
     justify-content: center;
 }
 .box{
-    margin-top: 300px;
+    margin-top: 150px;
     margin-left: 40px;
     width: 400px;
+}
+#bnt1{
+
+    background-color: #5188F5;
+    border-radius: 20px;
+    border: 0px;
+    color: white;
+    height: 44px;
+    width: 170px;
+    margin-left: 12px;
+}
+#bnt2{
+    margin-left: 30px;
+    background-color:white;
+    border-radius: 20px;
+    border: 1px;
+    border-style: solid;
+    border-color: #5188F5;
+    color:#5188F5;
+    height: 44px;
+    width: 170px;
 }
