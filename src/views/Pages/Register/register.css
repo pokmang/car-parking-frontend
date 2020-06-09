@@ -1,7 +1,6 @@
 .title{
     display: flex;
     justify-content: center;
-
 }
 .btn {
     display: flex;
@@ -9,6 +8,8 @@
 }
 #card{
     width: 434px;
+    border: 0px !important;
+    margin-top: 100px;
 }
 
 .back{
@@ -26,12 +27,8 @@
     color:#5188F5;
     height: 44px;
     width: 170px;
-   
 }
 #bnt2{
-   
-
-
     background-color: #5188F5;
     border-radius: 20px;
     border: 0px;

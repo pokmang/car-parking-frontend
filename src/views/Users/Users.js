@@ -11,16 +11,17 @@ const Users = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+
   const deluser = async (id) => {
     let res = await axios.delete(
       `http://localhost:8000/users/deleteUser/${id}`
     );
-    console.log(res.data);
     fetchData();
   };
   const renderList = () => {
     
-    
+    //จะแยกส่วน th นอก loop
     return user.map((v) => {
       return (
         <div key={v}>
@@ -42,62 +43,31 @@ const Users = () => {
             <tbody>
               <tr>
                 <th scope="row">{v.id}</th>
-                <td>
-                  {v.name} {v.surname}
-                </td>
+                <td>{v.name} {v.surname}</td>
                 <td>{v.nickname}</td>
                 <td>{v.age}</td>
                 <td>{v.phoneNumber}</td>
                 <td>{v.line}</td>
                 <td>{v.email}</td>
                 <td>
-                  {" "}
                   บ้านเลขที่ {v.address.houseNo} หมู่{v.address.village} ต.
                   {v.address.subDistrict} อ.{v.address.district} จ.
-                  {v.address.province} {v.address.country}{" "}
-                  {v.address.postalCode}{" "}
+                  {v.address.province} {v.address.country}
+                  {v.address.postalCode}
                 </td>
-                <button
-                  onClick={() => {
-                    deluser(v.id);
-                  }}
-                >
-                  DEL
-                </button>
+                <button className="btn1" onClick={() => { deluser(v.id);}} >DELETE</button>
+                <button className="btn2" >UPDATE</button>        
               </tr>
             </tbody>
           </table>
 
-          {/* <button
-            onClick={() => {
-              deluser(v.id);
-            }}
-          >
-            DEL
-          </button>
-           */}
         </div>
       );
     });
   };
   return  (
-    <div>
-      
-      {/* <div className="title">
-      <th className="id">ID</th>
-      <th className="name">Name</th>
-      <th className="nickname">Nickname</th>
-      <th className="age">Age</th>
-      <th>PhoneNumber</th>
-      <th>Line</th>
-      <th>E-mail</th>
-      <th>Address</th> 
-      <th>จัดการ USER</th> 
-
-      </div> */}
-     
+    <div>     
       {renderList()}
-  
     </div>
   );
 };
