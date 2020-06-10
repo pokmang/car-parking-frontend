@@ -16,7 +16,12 @@
     background-color:white;
 
 }
-
+.tag_input{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
 #bnt1{
  margin-left: 10px;
     background-color:white;
@@ -26,7 +31,7 @@
     border-color: #5188F5;
     color:#5188F5;
     height: 44px;
-    width: 170px;
+    width: 100%;
 }
 #bnt2{
     background-color: #5188F5;
@@ -34,7 +39,8 @@
     border: 0px;
     color: white;
     height: 44px;
-    width: 170px;
+    width: 100%;
     margin-left: 12px;
+    margin-bottom: 10px;
 }
 

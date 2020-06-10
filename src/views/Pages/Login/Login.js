@@ -13,7 +13,7 @@ const Login = props => {
   console.log("testinput",datauser);
 
   const fetchData = async () => {
-    let res = await axios.get("http://localhost:8000/users/getUsers");
+    let res = await axios.get("http://localhost:8000/users/getusers");
     setgetuser(res.data.data) //เก็บค่าไวใน usestate
     console.log("test",res.data.data);
   };

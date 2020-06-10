@@ -10,13 +10,13 @@
 }
 
 .btn1{
-    margin-top: 9px;
+    
     background-color: rgb(240, 100, 95);
     border-radius: 10px;
     border: 1px solid  rgb(185, 11, 5);
 }
 .btn2{
-    margin-left: 6px;
+    margin: 0px 0px 0px 10px;
     background-color: rgb(152, 143, 231);
     border: 1px solid  rgb(40, 22, 199);
     border-radius: 10px;

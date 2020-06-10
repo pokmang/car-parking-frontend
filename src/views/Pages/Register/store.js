@@ -2,25 +2,23 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger'
 
 const initialForm = {
-            id: 0,
-            name: "",
-            surname: "",
-            nickname: "",
-            age: 0,
-            phoneNumber: "",
-            line: "",
-            email: "",
-            password:"",
-            confirmpassword:"",
+            username: '',
+            password: '',
+            confirmPassword: '',
+            name: '',
+            surname: '',
+            nickname: '',
+            age: '',
+            phoneNumber: '',
+            line: '',
+            email: '',
             address: {
-                houseNo: "",
-                village: "",
-                subDistrict: "",
-                district: "",
-                province: "",
-                postalCode: "",
-                country: "",
-               
+                village: '',
+                subDistrict: '',
+                district: '',
+                province: '',
+                postalCode: '',
+                country: '',
             }
         }
 
@@ -29,7 +27,9 @@ const formReducer = (newdata = initialForm, action) => {
     console.log("121",newdata);
     
     switch (action.type) {
-        case 'CHANGE_id' : return {...newdata, id: action.data.id};
+        case 'CHANGE_username' : return {...newdata, username: action.data.username};
+        case 'CHANGE_password' : return {...newdata, password: action.data.password};
+        case 'CHANGE_confirmPassword' : return {...newdata, confirmPassword: action.data.confirmPassword};
         case 'CHANGE_name' : return {...newdata, name: action.data.name};
         case 'CHANGE_surname' : return {...newdata, surname: action.data.surname};
         case 'CHANGE_nickname' : return {...newdata, nickname: action.data.nickname};
@@ -37,8 +37,6 @@ const formReducer = (newdata = initialForm, action) => {
         case 'CHANGE_phoneNumber' : return {...newdata, phoneNumber: action.data.phoneNumber};
         case 'CHANGE_line' : return {...newdata, line: action.data.line};
         case 'CHANGE_email' : return {...newdata, email: action.data.email};
-        case 'CHANGE_password' : return {...newdata, password: action.data.password};
-        case 'CHANGE_confirmpassword' : return {...newdata, confirmpassword: action.data.confirmpassword};
         case 'CHANGE_houseNo' : return {...newdata, address :{...newdata.address , houseNo: action.data.houseNo}};
         case 'CHANGE_village' : return {...newdata,  address :{...newdata.address , village: action.data.village}};
         case 'CHANGE_subDistrict' : return {...newdata,  address :{...newdata.address , subDistrict: action.data.subDistrict}};
