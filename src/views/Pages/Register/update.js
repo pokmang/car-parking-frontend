@@ -1,30 +1,19 @@
-import React ,{useState , useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import colorgreen from "../../../assets/img/icon/colorgreen.png";
+import React from "react";
+import { Modal} from "antd";
 import {
-  Card,
-  CardBody,
-  Col,
-  Container,
-  Form,
   Input,
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  Row,
 } from "reactstrap";
-import logo from "../../../assets/img/icon/logodigital.png";
-import "./register.css";
-import { Modal, Button } from "antd";
-const userAPI = "http://localhost:8000/users/addUser";
+
+
 
 const Update = (props) => {
 
   return (
     <Modal
-      title="Basic Modal"
+      title="UPDATE DATA"
       visible={props.visibleupdate}
         onOk={()=>props.handleOkUpdate(props.user.id)}
       onCancel={props.handleCancelUpdate}

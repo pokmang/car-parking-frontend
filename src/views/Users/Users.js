@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./user.css";
 
@@ -10,11 +10,11 @@ const Users = () => {
   const [user, setUser] = useState([]);
   const [visibleupdate, setvisibleupdate] = useState(false);
   const [selectuser, setselectuser] = useState({});
-  console.log("user", user[1]);
 
   useEffect(() => {
     fetchData();
   }, []);
+  
   const showModalUpdate = async (user) => {
     await setselectuser(user);
     setvisibleupdate(true);
@@ -36,11 +36,11 @@ const Users = () => {
     delete selectuser.province;
     delete selectuser.postalCode;
     delete selectuser.country;
-      console.log(selectuser);
+      // console.log(selectuser);
       
-      let res = await axios.patch(`${updateAPI}/${id}`, selectuser);
+    await axios.patch(`${updateAPI}/${id}`, selectuser);
 
-      console.log(res.data);
+      // console.log(res.data);
       setvisibleupdate(false);
       fetchData();
    
@@ -50,26 +50,20 @@ const Users = () => {
     setvisibleupdate(false);
   };
   const fetchData = async () => {
-    let res = await axios.get(getAPI);
+    let resdata = await axios.get(getAPI);
 
-    if (res.data.success) {
-      setUser(res.data.users);
-      console.log("set", res.data.users);
+    if (resdata.data.success) {
+      setUser(resdata.data.users);
+      console.log("set", resdata.data.users);
     } else {
       return <div>data error</div>;
     }
 
-    // if(res.data.success){
-    //   setUser(res.data);
-    //   console.log("get",res.data);
-    // }
-    // else{
-    //   return <div>DATA USER Error</div>
-    // }
+
   };
 
   const deluser = async (id) => {
-    let res = await axios.delete(
+      await axios.delete(
       `http://localhost:8000/users/deleteuser/${id}`
     );
     fetchData();
@@ -115,7 +109,7 @@ const Users = () => {
       );
     });
   };
-  console.log(selectuser);
+  // console.log(selectuser);
 
   return (
     <div>

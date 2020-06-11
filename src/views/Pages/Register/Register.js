@@ -1,20 +1,16 @@
 import React ,{useState}from "react";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import colorgreen from "../../../assets/img/icon/colorgreen.png";
 import {Card,CardBody,Col,Container,Form,Input,InputGroup,InputGroupAddon,InputGroupText,Row,} from "reactstrap";
 import logo from "../../../assets/img/icon/logodigital.png";
 import "./register.css";
 const userAPI = 'http://localhost:8000/users/createuser'
+
+
 const Register = (props) => {
 
-
-  const dispatch = useDispatch();
-  const form = useSelector((state) => state.form);
   const [data , setdata] = useState({})
 
-  
 
   const createuser = async () => {
 
@@ -25,42 +21,33 @@ const Register = (props) => {
     console.log("res",res.data.message);
     
     if (res.data.message === 'username must be longer than 4'){
-        alert("username must be longer than 4'");
+        alert("username ต้องมากกว่า 4 ตัว'");
     }
     else if (res.data.message === 'password must be longer than 6'){
-      alert("password must be longer than 6");
+      alert("password ต้องมากกว่า 4 ตัว");
     }
     else if (res.data.message === 'this username already exists'){
-      alert("this username already exists");
+      alert("มี username นี้อยู่แล้ว");
     }
     else if (res.data.message === 'wrong password'){
-      alert("wrong password");
+      alert("รหัสไม่ตรงกัน");
     }
-    else{
-          
+    else{     
       alert("Create Success");
-      // props.history.push("/users");
+      props.history.push("/users");
     }
-    
-
-    dispatch({
-      type: "ADD_USER",
-      user: {
-        ...form,
-      },
-    });
 
   };
   console.log(data);
   return (
     <div className="back">
       <Row>
-        <Col>
+        <Col >
           <div>
             <img src={colorgreen} alt="logocar" className="img" />
           </div>
         </Col>
-        <Col>
+        <Col >
           <div className="app flex-row align-items-baseline">
             <Container>
               <Row className="justify-content-start">

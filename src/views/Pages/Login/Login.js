@@ -1,38 +1,34 @@
-import React, { Component, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Col,Row ,form} from "reactstrap";
 import "./login.css";
 import colorgreen from "../../../assets/img/icon/colorgreen.png";
 import logo from "../../../assets/img/icon/img.png";
+
+const authAPI = 'http://localhost:8000/auth/login'
+
 const Login = props => {
 
-  const [datauser, setUser] = useState();  //จากinput
-  const [getuser, setgetuser] = useState(); //จาก backend
-  console.log("testget",getuser);
-  console.log("testinput",datauser);
+  const [datauser, setUser] = useState({});  //จากinput
+  console.log(datauser);
 
-  const fetchData = async () => {
-    let res = await axios.get("http://localhost:8000/users/getusers");
-    setgetuser(res.data.data) //เก็บค่าไวใน usestate
-    console.log("test",res.data.data);
-  };
+const login = async () => {
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  const logins = (props) => {
-    
-    //ยังไม่เข้าเงือนไข
-    if(datauser.email === getuser.email && datauser.password === getuser.password){
-        alert('Login Success')
-        props.history.push("/dashboard");
-    }else{
-        alert('Not found user')
-    }
-}
+  let res = await axios.post(authAPI, datauser);
 
+  console.log("res",res.data.success);
+  if (res.data.success){
+       alert("Login Success");
+       props.history.push("/users");
+  }
+  else{      
+    alert("username หรือ password คุณป้อนไม่ถูกต้อง");
+  }
+
+
+};
 
 
   return (
@@ -54,7 +50,7 @@ const Login = props => {
                 type="username"
                 className="form-control"
                 placeholder="Username"
-                onChange={(e) => setUser({...datauser,email: e.target.value})}
+                onChange={(e) => setUser({...datauser,username: e.target.value})}
               />
             </div>
             <div className="form-group">
@@ -75,11 +71,11 @@ const Login = props => {
                 Remember me
               </label>
               <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
+                Forgot <small href="#" className="text-primary">password?</small>
               </p>
             </div>
 
-            <button id="bnt1" onClick={logins}>Login</button>
+            <button id="bnt1" onClick={login} >Login</button>
             <Link to="/register">
               <button id="bnt2" >Sing up</button>
             </Link>

@@ -60,3 +60,10 @@ h6 {
     text-align: center;
     opacity: 0.5;
 }
+h4 {
+    color:white;
+}
+
+#scroll{
+    overflow: hidden;
+}
